@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 export default function Checkout() {
   return (
     <div className="min-h-screen bg-[#f4f5f9]">
@@ -45,10 +46,10 @@ export default function Checkout() {
             <OrderItem />
             <OrderItem noBorder />
 
-{/* FRANJA DESCUENTO */}
-<div className="mt-6 -mx-8 -mb-8 bg-[#eef1f6] py-4 text-center text-sm font-medium text-[#1c2b8f] rounded-b-md">
-  Have discount code? Click to enter it.
-</div>
+            {/* FRANJA DESCUENTO */}
+            <div className="mt-6 -mx-8 -mb-8 bg-[#eef1f6] py-4 text-center text-sm font-medium text-[#1c2b8f] rounded-b-md">
+              Have discount code? Click to enter it.
+            </div>
 
           </div>
 
@@ -110,6 +111,46 @@ export default function Checkout() {
 
 /* ---------- COMPONENTES ---------- */
 
+function OrderItem({ noBorder }: any) {
+  return (
+    <div className={`flex justify-between py-6 ${!noBorder && "border-b border-gray-200"}`}>
+      <div className="flex gap-4">
+
+        {/* IMAGEN */}
+        <div className="w-14 h-14 bg-[#f4f5f9] rounded-md relative overflow-hidden">
+          <Image
+            src={
+              noBorder
+                ? "/products/glass.png"
+                : "/products/case.png"
+            }
+            alt="Product image"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div>
+          <p className="font-semibold text-[#1c2b8f]">
+            Tempered glass for Iphone
+          </p>
+          <p className="text-xs text-gray-500">
+            Size: Iphone 7, Iphone 8
+          </p>
+          <p className="text-xs text-gray-500">
+            Quantity: 4 items
+          </p>
+        </div>
+      </div>
+
+      <div className="text-right">
+        <p className="font-bold text-[#1c2b8f]">€ 20.00</p>
+        <p className="text-xs text-gray-500">€ 5.00 per item</p>
+      </div>
+    </div>
+  );
+}
+
 function Step({ number, label, active = false, dark = false }: any) {
   return (
     <div className="flex items-center gap-3 text-white">
@@ -133,33 +174,6 @@ function Step({ number, label, active = false, dark = false }: any) {
   );
 }
 
-function OrderItem({ noBorder }: any) {
-  return (
-    <div className={`flex justify-between py-6 ${!noBorder && "border-b border-gray-200"}`}>
-      <div className="flex gap-4">
-        <div className="w-14 h-14 bg-[#f4f5f9] rounded-md"></div>
-
-        <div>
-          <p className="font-semibold text-[#1c2b8f]">
-            Tempered glass for Iphone
-          </p>
-          <p className="text-xs text-gray-500">
-            Size: Iphone 7, Iphone 8
-          </p>
-          <p className="text-xs text-gray-500">
-            Quantity: 4 items
-          </p>
-        </div>
-      </div>
-
-      <div className="text-right">
-        <p className="font-bold text-[#1c2b8f]">€ 20.00</p>
-        <p className="text-xs text-gray-500">€ 5.00 per item</p>
-      </div>
-    </div>
-  );
-}
-
 function PriceRow({ label, value }: any) {
   return (
     <div className="flex justify-between text-sm mb-4">
@@ -173,7 +187,6 @@ function Bottom({ type, title }: any) {
   return (
     <div>
       <div className="flex justify-center mb-3 text-[#f4b740]">
-
         {type === "lock" && (
           <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round"
@@ -194,7 +207,6 @@ function Bottom({ type, title }: any) {
               d="M4 15v-3a8 8 0 0116 0v3M4 15a2 2 0 002 2h2v-6H6a2 2 0 00-2 2zm16 0a2 2 0 01-2 2h-2v-6h2a2 2 0 012 2z" />
           </svg>
         )}
-
       </div>
 
       <h3 className="font-semibold text-[#1c2b8f] mb-1">
